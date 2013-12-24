@@ -2519,7 +2519,7 @@ void msm_fb_release_busy(struct msm_fb_data_type *mfd)
 	complete_all(&mfd->commit_comp);
 	mutex_unlock(&mfd->sync_mutex);
 }
-static int msm_fb_commit_thread(void *data)
+int msm_fb_commit_thread(void *data)
 {
 	int ret = 0;
 	struct msm_fb_data_type *mfd = (struct msm_fb_data_type *) data;
@@ -2540,7 +2540,7 @@ static int msm_fb_commit_thread(void *data)
 				info = &fb_backup->info;
 				if (fb_backup->disp_commit.flags &
 						MDP_DISPLAY_COMMIT_OVERLAY) {
-					overlay_commit = true;
+					overlay_commit = false;
 					mdp4_overlay_commit(info);
 				} else {
 					var = &fb_backup->disp_commit.var;

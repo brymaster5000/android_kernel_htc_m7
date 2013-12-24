@@ -1,0 +1,2 @@
+cp arch/arm/boot/zImage ../m7_AOSP_cm10.2/packages
+find . -name "*.ko" -exec cp {} ../m7_AOSP_cm10.2/packages \;
